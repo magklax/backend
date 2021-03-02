@@ -10,15 +10,8 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
-    complitedGame: {
-        memory: { type: Number },
-        simon: { type: Number },
-        tetris: { type: Number },
-        tic_tac_toe: { type: Number },
-        hangman: { type: Number },
-        gem_puzzle: { type: Number },
-        snake: { type: Number },
-        guess_a_number: { type: Number },
+    results: {
+        type: Array,
     },
 });
 

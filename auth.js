@@ -51,16 +51,7 @@ module.exports.save = async function (req, res) {
             { username: req.body.username },
             {
                 $set: {
-                    complitedGame: {
-                        memory: req.body.complitedGame.memory,
-                        simon: req.body.complitedGame.simon,
-                        tetris: req.body.complitedGame.tetris,
-                        tic_tac_toe: req.body.complitedGame.tic_tac_toe,
-                        hangman: req.body.complitedGame.hangman,
-                        gem_puzzle: req.body.complitedGame.gem_puzzle,
-                        snake: req.body.complitedGame.snake,
-                        guess_a_number: req.body.complitedGame.guess_a_number,
-                    },
+                    results: req.body.results
                 },
             },
             { new: true },
@@ -77,19 +68,19 @@ module.exports.save = async function (req, res) {
     }
 };
 
-// Get progress from database
-module.exports.getsave = async function (req, res) {
-    User.findOne({ username: req.body.username }, (err, docs) => {
-        if (err) {
-            return res.status(400).json({ errors: err });
-        } else {
-            try {
-                if (docs.length !== 0) {
-                    res.status(200).json({ success: docs });
-                }
-            } catch (error) {
-                return res.status(400).json({ errors: 'No user found' });
-            }
-        }
-    });
-};
+// // Get progress from database
+// module.exports.getsave = async function (req, res) {
+//     User.findOne({ username: req.body.username }, (err, docs) => {
+//         if (err) {
+//             return res.status(400).json({ errors: err });
+//         } else {
+//             try {
+//                 if (docs.length !== 0) {
+//                     res.status(200).json({ success: docs });
+//                 }
+//             } catch (error) {
+//                 return res.status(400).json({ errors: 'No user found' });
+//             }
+//         }
+//     });
+// };
