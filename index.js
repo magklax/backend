@@ -25,7 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Middlewares
 app.use(cookieParser());
-app.use(bodyParser());
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 app.use(session({ secret: SESSION_SECRET }));
 
 // Logger
