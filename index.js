@@ -41,8 +41,9 @@ app.use(todoRoutes);
 passport.use(
     new LocalStrategy(
         {
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password',
+            results: 'results',
         },
         function (username, password, done) {
             User.findOne({ username: username }, async function (err, user) {

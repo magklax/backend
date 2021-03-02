@@ -49,12 +49,7 @@ module.exports.save = async function (req, res) {
     try {
         User.findOneAndUpdate(
             { username: req.body.username },
-            {
-                $set: {
-                    results: req.body.results
-                },
-            },
-            { new: true },
+            { results: req.body.results },
             (err, docs) => {
                 if (err) {
                     return res.status(400).json({ errors: err });
@@ -68,19 +63,19 @@ module.exports.save = async function (req, res) {
     }
 };
 
-// // Get progress from database
-// module.exports.getsave = async function (req, res) {
-//     User.findOne({ username: req.body.username }, (err, docs) => {
-//         if (err) {
-//             return res.status(400).json({ errors: err });
-//         } else {
-//             try {
-//                 if (docs.length !== 0) {
-//                     res.status(200).json({ success: docs });
-//                 }
-//             } catch (error) {
-//                 return res.status(400).json({ errors: 'No user found' });
-//             }
-//         }
-//     });
-// };
+// Get progress from database
+module.exports.getsave = async function (req, res) {
+    User.findOne({ username: req.body.username }, (err, docs) => {
+        if (err) {
+            return res.status(400).json({ errors: err });
+        } else {
+            try {
+                if (docs.length !== 0) {
+                    res.status(200).json({ success: docs });
+                }
+            } catch (error) {
+                return res.status(400).json({ errors: 'No user found' });
+            }
+        }
+    });
+};
