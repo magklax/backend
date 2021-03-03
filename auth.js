@@ -31,7 +31,7 @@ module.exports.logout = function (req, res) {
 module.exports.register = async function (req, res, next) {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     var user = new User({
-        username: req.body.email,
+        username: req.body.username,
         password: hashedPassword,
     });
     user.save(function (err) {
@@ -49,7 +49,7 @@ module.exports.save = async function (req, res) {
     try {
         User.findOneAndUpdate(
             { username: req.body.username },
-            { results: req.body.results },
+            { $push: { results: req.body.results } },
             (err, docs) => {
                 if (err) {
                     return res.status(400).json({ errors: err });
